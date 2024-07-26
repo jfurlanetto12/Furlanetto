@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+
+
+int main(){
+
+
+double X, Y, media;
+
+scanf("%lf", &X);
+scanf("%lf", &Y);
+
+media=((X * 3.5) + (Y * 7.5)) /11;
+printf("MEDIA = %.5lf\n",media);
+
+return 0;
+
+}
+
