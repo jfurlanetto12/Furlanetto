@@ -1,30 +1,148 @@
 #include <stdio.h>
 
 
+int potencia(int base, int exp);
+float raizQuadrada(float num);
+int mdc(int a, int b);
+int mmc(int a, int b);
+long fatorial(int n);
+void equacaoSegundoGrau(float a, float b, float c);
 
-int main(){
+int main() {
+    int opcao, num1, num2;
+
+    do {
+    printf("1- Somar\n2- Subtrair\n3- Multiplicacao\n4- Divisao\n5- Potenciacao\n6- Raiz Quadrada\n7- Fatorial\n8- MDC\n9- MMC\n10- Equacão de Segundo Grau\n0- Sair\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &opcao);
+
+    if (opcao == 0) {
+    printf("Saindo...\n");
+    break;
+    }
+
+    if (opcao >= 1 && opcao <= 5 || opcao >= 7 && opcao <= 8) {
+    printf("Digite dois valores: ");
+    scanf("%d%d", &num1, &num2);
+    }
+
+    switch (opcao) {
+    case 1:
+    printf("Soma: %d\n", num1 + num2);
+    break;
+    
+    case 2:
+   printf("Subtração: %d\n", num1 - num2);
+    break;
+    
+    case 3:
+    printf("Multiplicação: %d\n", num1 * num2);
+    break;
+    
+    case 4:
+    while (num2 == 0) {
+    printf("Indefinido\n Digite outro valor:");
+    scanf("%d", &num2);
+    }
+    printf("Divisão: %d\n", num1 / num2);
+    break;
+
+    case 5:
+    printf("Potenciacao: %d\n", potencia(num1, num2));
+    break;
+
+    case 6: 
+    float num;
+    printf("Digite o valor para calcular a raiz quadrada: ");
+    scanf("%f", &num);
+    printf("Raiz Quadrada: %.2f\n", raizQuadrada(num));
+    break;
+    
+    case 7:
+    printf("Digite um número inteiro para calcular o fatorial: ");
+    scanf("%d", &num1);
+    printf("Resultado: %d! = %ld\n", num1, fatorial(num1));
+    break;
+    
+    case 8:
+    printf("MDC: %d\n", mdc(num1, num2));
+    break;
+
+    case 9:
+    printf("MMC: %d\n", mmc(num1, num2));
+    break;
+
+    case 10: {
+    float a, b, c;
+    printf("Digite os coeficientes a, b e c: ");
+    scanf("%f %f %f", &a, &b, &c);
+    equacaoSegundoGrau(a, b, c);
+    break;
+    }
+
+    default:
+    printf("Opcao invalida.\n");
+    }
+
+    } while (opcao != 0);
+
+    return 0;
+}
+
+int potencia(int base, int exp) {
+    int resultado = 1;
+    for (int i = 0; i < exp; i++) {
+    resultado *= base;
+    }
+    return resultado;
+}
+
+float raizQuadrada(float num) {
+    float raiz = num / 2;
+    float temp = 0;
+    while (raiz != temp) {
+    temp = raiz;
+    raiz = (num / temp + temp) / 2;
+    }
+    return raiz;
+
+    }
+    long fatorial(int n) {
+    if (n < 0) {
+    printf("Erro: Fatorial não é definido para números negativos.\n");
+    return 0;
+    }
+    long resultado = 1;
+    for (int i = 1; i <= n; i++) {
+    resultado *= i;
+    }
+    return resultado;
+    }
+
+int mdc(int a, int b) {
+    while (b != 0) {
+    int temp = b;
+    b = a % b;
+    a = temp;
+    }
+    return a;
+}
 
 
-int num1, num2, result;
+int mmc(int a, int b) {
+    return (a * b) / mdc(a, b);
+}
 
-
-
-
-scanf("%d",&num1);
-
-
-
-
-scanf("%d",&num2);
-
-
-result = num1 + num2;
-
-
-
-printf("X = %d\n", result);
-
-
-return 0;
-
+void equacaoSegundoGrau(float a, float b, float c) {
+    float delta = b * b - 4 * a * c;
+    if (delta < 0) {
+    printf("Nao ha raizes reais.\n");
+    } else if (delta == 0) {
+    float x = -b / (2 * a);
+    printf("Raiz unica: x = %.2f\n", x);
+    } else {
+    float x1 = (-b + raizQuadrada(delta)) / (2 * a);
+    float x2 = (-b - raizQuadrada(delta)) / (2 * a);
+    printf("Raizes: x1 = %.2f, x2 = %.2f\n", x1, x2);
+    }
 }
