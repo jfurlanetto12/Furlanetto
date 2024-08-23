@@ -1,14 +1,14 @@
 #include <stdio.h>
 
 
-int potencia(int base, int exp);
-float raizQuadrada(float num);
-int mdc(int a, int b);
-int mmc(int a, int b);
-long fatorial(int n);
-void equacaoSegundoGrau(float a, float b, float c);
+    int potencia(int base, int exp);
+    float raizQuadrada(float num);
+    int mdc(int a, int b);
+    int mmc(int a, int b);
+    long fatorial(int n);
+    void equacaoSegundoGrau(float a, float b, float c);
 
-int main() {
+    int main() {
     int opcao, num1, num2;
 
     do {
@@ -32,7 +32,7 @@ int main() {
     break;
     
     case 2:
-   printf("Subtração: %d\n", num1 - num2);
+    printf("Subtração: %d\n", num1 - num2);
     break;
     
     case 3:
@@ -87,17 +87,17 @@ int main() {
     } while (opcao != 0);
 
     return 0;
-}
+    }
 
-int potencia(int base, int exp) {
+    int potencia(int base, int exp) {
     int resultado = 1;
     for (int i = 0; i < exp; i++) {
     resultado *= base;
     }
     return resultado;
-}
+    }
 
-float raizQuadrada(float num) {
+    float raizQuadrada(float num) {
     float raiz = num / 2;
     float temp = 0;
     while (raiz != temp) {
@@ -119,21 +119,21 @@ float raizQuadrada(float num) {
     return resultado;
     }
 
-int mdc(int a, int b) {
+    int mdc(int a, int b) {
     while (b != 0) {
     int temp = b;
     b = a % b;
     a = temp;
     }
     return a;
-}
+    }
 
 
-int mmc(int a, int b) {
+    int mmc(int a, int b) {
     return (a * b) / mdc(a, b);
-}
+    }
 
-void equacaoSegundoGrau(float a, float b, float c) {
+    void equacaoSegundoGrau(float a, float b, float c) {
     float delta = b * b - 4 * a * c;
     if (delta < 0) {
     printf("Nao ha raizes reais.\n");
@@ -145,4 +145,4 @@ void equacaoSegundoGrau(float a, float b, float c) {
     float x2 = (-b - raizQuadrada(delta)) / (2 * a);
     printf("Raizes: x1 = %.2f, x2 = %.2f\n", x1, x2);
     }
-}
+    }
